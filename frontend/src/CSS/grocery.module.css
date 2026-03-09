@@ -44,14 +44,21 @@
 }
 
 button{
-    width: 30px;
+    width: auto;
     height: 30px;
     border: none;
     background-color: lightblue;
     font-size: 18px;
     font-weight: bold;
+    margin: 5px 5px 5px 5px;
+    border-radius: 10px;
 }
 
-.newBtn {
+.addBtn {
     width: 100px;
+}
+
+.deleteBtn{
+    width: 100px;
+    margin-bottom: 5px;
 }
