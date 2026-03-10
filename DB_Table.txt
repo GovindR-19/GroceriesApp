@@ -1,0 +1,18 @@
+CREATE TABLE categories (
+id SERIAL PRIMARY KEY,
+category_name VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE items (
+id SERIAL PRIMARY KEY,
+category_id INTEGER REFERENCES categories(id) ON DELETE CASCADE,
+item name VARCHAR(255) NOT NULL,
+item_count INTEGER DEFAULT 1,
+toggle BOOLEAN DEFAULT false
+)
+
+
+INSERT INTO items (category_id, item_name, item_count, toggle)
+VALUES 	(1, 'Soap', 4, true ),
+		(1, 'Cleaning Brush', 1, true ),
+		(1, 'Javel 1L', 2, true );
