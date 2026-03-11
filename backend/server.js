@@ -15,10 +15,19 @@ server.get("/test", (request, response)=>{
     response.send("Testing, testing. Is this mike on?")
 });
 
-server.get('/items', async (request, response) =>{
+server.post('/items', async (request, response) =>{
     try{
-        const allItems = await pool.query('SELECT * FROM items');
-        response.json(allItems.rows);
+        console.log("Request Received: ",request.body);
+        const { item_name, item_count, category_id, toggle  } = request.body;
+
+        
+        const allItems = await pool.query(`
+            INSERT INTO items (category_id, item_name, item_count, toggle)
+            VALUES ($1, $2, $3, $4 ) RETURNING * ;`,
+            [category_id, item_name, item_count, toggle ]
+            );
+
+        response.json(allItems.rows[0]);
     }
 
     catch(err){
