@@ -7,8 +7,36 @@ const port = 3000
 server.use(cors());
 server.use(express.json());
 
-server.get("/", (request,response)=>{
-    response.send("Groceries App");
+//Query server for groceries details
+    // Get data from database
+    // convert data to JSON for display
+server.get(["/","/index"], async (request, response)=>{
+    try{
+        const sql = "SELECT category_name, items.item_name , items.item_count , items.toggle FROM categories JOIN items ON items.category_id = categories.id;";
+        const data = await pool.query(sql)
+        
+        const jsonReduce = data.rows.reduce((acc, item)=>
+            {
+                const { category_name, item_name, item_count, toggle} = item;
+                
+                if(!acc[category_name]){
+                    acc[category_name] = [];
+                }
+                acc[category_name].push({item_name, item_count, toggle});
+                
+                return acc;
+            }, {});
+            
+        // console.log(json(jsonReduce))
+        response.json(jsonReduce);
+
+
+    }
+    catch(err){
+        console.error(err);
+        response.status(500).json({error: "Database connection failed"});
+    }
+
 });
 
 server.get("/test", (request, response)=>{

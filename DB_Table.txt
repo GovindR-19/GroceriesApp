@@ -6,10 +6,13 @@ category_name VARCHAR(255) NOT NULL
 CREATE TABLE items (
 id SERIAL PRIMARY KEY,
 category_id INTEGER REFERENCES categories(id) ON DELETE CASCADE,
-item name VARCHAR(255) NOT NULL,
+item_name VARCHAR(255) NOT NULL,
 item_count INTEGER DEFAULT 1,
 toggle BOOLEAN DEFAULT false
-)
+);
+
+INSERT INTO categories (category_name) 
+VALUES ('Cleaning'), ('Snacks'), ('Pantry');
 
 
 INSERT INTO items (category_id, item_name, item_count, toggle)
