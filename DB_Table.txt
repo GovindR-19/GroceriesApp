@@ -16,3 +16,16 @@ INSERT INTO items (category_id, item_name, item_count, toggle)
 VALUES 	(1, 'Soap', 4, true ),
 		(1, 'Cleaning Brush', 1, true ),
 		(1, 'Javel 1L', 2, true );
+
+
+INSERT INTO items(category_id, item_name, item_count, toggle)
+VALUES 	(2,'KitKat', 2 , true),
+		(2, 'Miss Croc', 3,  true),
+		(2, 'Twisties', 4, true),
+		(2, 'M&M',3, true),
+		(2, 'Biscuit Prince', 1,  true),
+		(3, 'Belinda',6, true),
+		(3, 'Mais en grain',2, true),
+		(3, 'Champignon',2, true),
+		(3, 'Thon', 4 , true),
+		(3, 'Sardine', 2 , true);
